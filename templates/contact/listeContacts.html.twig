@@ -17,4 +17,9 @@
         <li>Your template at <code><a href="{{ 'C:/wamp64/www/GESTIONCONTACT/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
     </ul>
 </div> #}
+<ol>
+{% for  contact in lesContacts %}
+    <li>{{contact.prenom}}</li> {{contact.nom}}</li>
+    {% endfor %} 
+</ol> 
 {% endblock %}
