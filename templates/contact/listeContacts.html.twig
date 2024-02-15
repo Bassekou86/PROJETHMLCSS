@@ -1,25 +1,37 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Liste des contatcs{% endblock %}
-
 {% block body %}
-{#<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/GESTIONCONTACT/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/GESTIONCONTACT/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
-</div> #}
-<ol>
+<div class="row">
+{#{{dump(lesContacts)}}#}
+    {% for contact in lesContacts %} 
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
+            <div class="card mb-3 container, d-flex align-items-center" style="width: 18rem;"> 
+                <h4 class="card-title text-center">{{contact.nom}} {{contact.prenom}}</h4>
+                <img class="avatar" style="height: auto; max-width: 200px; display: block;" src="{{contact.avatar}}" class="avatar mx-auto my-3" alt="image avatar">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{contact.rue}}</li>
+                    <li class="list-group-item">{{contact.cp}}</li>
+                    <li class="list-group-item">{{contact.ville}}</li>
+                    <li class="list-group-item">{{contact.mail}}</li>
+                    <li class="list-group-item, genre">
+                    {%if contact.sexe==0%}
+                        <span class = "homme">Homme</span>
+                        {%else%}
+                        <span  class = "femme"> Femme</span>
+                    {% endif %}
+                    <div class= "card-body">
+                        <a href="{{path('ficheContact',{'id':contact.id})}}" class="btn btn-success btn-block text-center w-100">Détail...</a>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        
+    {% endfor %}
+</div>
+{#<ol>
 {% for  contact in lesContacts %}
     <li>{{contact.prenom}}</li> {{contact.nom}}</li>
     {% endfor %} 
 </ol> 
+#}
 {% endblock %}

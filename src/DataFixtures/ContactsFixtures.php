@@ -1,7 +1,7 @@
 <?php
 
 namespace App\DataFixtures;
-
+use App\Entity\Categorie;
 use App\Entity\Contacts;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -11,6 +11,24 @@ class ContactsFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker  = \Faker\Factory::create('fr_FR');
+        $categories=[];
+        $categories = new Categorie();
+        $categories->setLibelle("Professionnel")
+                    ->setDescription($faker->sentence(50))
+                    ->setImage("https://picsum.photos/id/5/200/300/");
+        $manager->persist($categories);
+        $categories = new Categorie();
+        $categories->setLibelle("Privé")
+                    ->setDescription($faker->sentence(50))
+                    ->setImage("https://picsum.photos/id/73/200/300/");
+        $manager->persist($categories);            
+        $categories = new Categorie();
+        $categories->setLibelle("Sport")
+                    ->setDescription($faker->sentence(50))
+                    ->setImage("https://picsum.photos/id/342/200/300/");
+        $manager->persist($categories);
+
+
         $genres = ["male", "female"];
         for ($i=0 ; $i < 100 ; $i++) {
         $sexe = mt_rand(0,1);
@@ -27,7 +45,7 @@ class ContactsFixtures extends Fixture
             ->setVille($faker->city())
             ->setMail($faker->email())
             ->setSexe ($sexe)
-            ->setAvatar("https:://randomuser.me/api/portraits/".$type ."/". $i.".jpg");
+            ->setAvatar("https://randomuser.me/api/portraits/".$type ."/". $i.".jpg");
     $manager->persist($contacts);
         }
         $manager->flush();
