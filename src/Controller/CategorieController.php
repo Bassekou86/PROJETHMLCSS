@@ -23,7 +23,7 @@ class CategorieController extends AbstractController
         ]);
     }
     /**
-     * @Route("/categorie/{id}", name="ficheCategorie", methods={"GET"})
+     * @Route("/categorie/{id}", name="ficheCategorie", methods={"GET"}ate)
      */
     public function ficheCategorie($id, CategorieRepository $repo): Response
     {

@@ -5,6 +5,7 @@ use App\Entity\Categorie;
 use App\Entity\Contacts;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints\Length;
 
 class ContactsFixtures extends Fixture
 {
@@ -17,18 +18,19 @@ class ContactsFixtures extends Fixture
                     ->setDescription($faker->sentence(50))
                     ->setImage("https://picsum.photos/id/5/200/300/");
         $manager->persist($categories);
+       $Categorie[]= $categories;
         $categories = new Categorie();
         $categories->setLibelle("Privé")
                     ->setDescription($faker->sentence(50))
                     ->setImage("https://picsum.photos/id/73/200/300/");
-        $manager->persist($categories);            
+        $manager->persist($categories);
+         $Categorie[]= $categories;          
         $categories = new Categorie();
         $categories->setLibelle("Sport")
                     ->setDescription($faker->sentence(50))
                     ->setImage("https://picsum.photos/id/342/200/300/");
         $manager->persist($categories);
-
-
+         $Categorie[]= $categories;
         $genres = ["male", "female"];
         for ($i=0 ; $i < 100 ; $i++) {
         $sexe = mt_rand(0,1);
@@ -45,7 +47,8 @@ class ContactsFixtures extends Fixture
             ->setVille($faker->city())
             ->setMail($faker->email())
             ->setSexe ($sexe)
-            ->setAvatar("https://randomuser.me/api/portraits/".$type ."/". $i.".jpg");
+            ->setAvatar("https://randomuser.me/api/portraits/".$type ."/". $i.".jpg")
+            ->setCategorie($Categorie[mt_rand(0,2)]);
     $manager->persist($contacts);
         }
         $manager->flush();

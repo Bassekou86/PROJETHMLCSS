@@ -13,10 +13,17 @@
                     <li class="list-group-item">{{leContact.mail}}</li>
                     <li class="list-group-item">
                     {%if leContact.sexe==0%}
-                        <span class = "homme">Homme</span>
+                        border-info
+                        <span class = 'badge text-bg-info'>Homme</span>
                         {%else%}
-                        <span  class = "femme"> Femme</span>
+                        border-warning 
+                        <span  class = 'badge text-bg-warning'> Femme</span>
                     {% endif %}
+                      </li>
+                    <li class="list-group-item categorie">
+                     <a class="text-align-center" href="{{path('ficheCategorie',{'id':leContact.categorie.id})}}">
+                    {{leContact.categorie.libelle}}
+                    </li>
                     <div class= "card-body">
                     <a href="{{path('app_contacts')}}" class="btn btn-primary btn-block text-center w-100">Retour</a>
                     </div>

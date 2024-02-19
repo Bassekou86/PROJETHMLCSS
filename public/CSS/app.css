@@ -1,14 +1,8 @@
 .homme{
     background-color: blue;
-    display: flex;
-    align-items: center;
-    text-align: center;
 }
 .femme{
-    display: flex;
     background-color: pink;
-    align-items: center;
-    text-align:center;
 }
 .avatar{
     border-radius: 50%;
@@ -17,4 +11,10 @@
 .genre{
     display: flex;
     align-items: center;
+}
+.categorie{
+    background-color: greenyellow;
+}
+.row{
+    text-align: center;
 }
